@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,400;1,500;1,600&family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-body font-body;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-charcoal;
+    font-weight: 400;
+  }
+
+  h2 {
+    font-size: clamp(32px, 5vw, 68px);
+    line-height: 1.1;
+  }
+}
+
+@layer utilities {
+  .section-tag {
+    @apply text-rose uppercase tracking-[0.2em] font-body font-medium mb-4 block;
+    font-size: 11px;
+  }
+
+  /* Split Text styles */
+  .splitting .char {
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+
+  .reveal-text {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  .reveal-text.in {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .btn-rose {
+    @apply bg-sukuna text-white px-10 py-4 uppercase tracking-[0.2em] font-body font-bold text-[11px] transition-all duration-500 relative overflow-hidden shadow-lg shadow-sukuna/10;
+  }
+
+  .btn-rose:hover {
+    @apply shadow-sukuna/40 -translate-y-1 scale-105;
+    background: linear-gradient(135deg, theme('colors.sukuna'), #A22550);
+  }
+
+  .btn-outline-rose {
+    @apply border border-sukuna text-sukuna px-10 py-4 uppercase tracking-[0.2em] font-body font-bold text-[11px] transition-all duration-500 hover:bg-sukuna hover:text-white hover:shadow-lg hover:shadow-sukuna/20;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+
+  .reveal-left.in {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .image-zoom-container {
+    @apply overflow-hidden;
+  }
+
+  .image-zoom-container img {
+    @apply transition-transform duration-700;
+  }
+
+  .image-zoom-container:hover img {
+    @apply scale-105;
+  }
+
+  .custom-cursor {
+    @apply fixed w-2 h-2 bg-rose rounded-full pointer-events-none z-[9999];
+    transition: transform 0.1s ease-out;
+  }
+
+  .cursor-follower {
+    @apply fixed w-10 h-10 border border-rose rounded-full pointer-events-none z-[9998];
+    transition: all 0.2s ease-out;
+  }
+}
+
+/* Custom styles for the Ovation aesthetic */
+.logo-font {
+  font-family: 'Cormorant Garamond', 'EB Garamond', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  @apply font-body font-normal text-[12px] uppercase tracking-widest text-charcoal hover:text-rose transition-colors relative;
+}
+
+.nav-link-active::before {
+  content: "○";
+  @apply absolute -left-4 text-rose;
+}
+
+.parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .portfolio-cta-btn {
+    @apply inline-block px-10 py-4 uppercase tracking-[0.2em] font-body font-bold text-[11px] transition-all duration-500;
+    border: 2px solid #000;
+    color: #000;
+    opacity: 1;
+    background-color: transparent;
+  }
+
+  .portfolio-cta-btn:hover {
+    @apply shadow-lg;
+    background-color: rgba(0, 0, 0, 0.1); /* Darken by 10% */
+  }
