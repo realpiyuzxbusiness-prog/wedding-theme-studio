@@ -7,6 +7,7 @@ import FloralSVG from "@/components/FloralSVG";
 import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
 import { X, Search } from "lucide-react";
+import Masonry from "@/components/Masonry";
 
 const CATEGORIES = ["All", "Wedding", "Destination", "Pre-Wedding", "Cinematic Films"];
 
@@ -72,49 +73,26 @@ const Portfolio = () => {
       </div>
 
       {/* Grid */}
-      <section className="max-w-[1600px] mx-auto px-4 md:px-8 py-20">
-        <motion.div 
-          layout
-          className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {filtered.map((item, i) => (
-              <motion.div
-                layout
-                key={`${item.src}-${i}`}
-                initial={{ opacity: 0, rotateX: -15, y: 40, transformPerspective: 1000 }}
-                animate={{ opacity: 1, rotateX: 0, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: i * 0.05, 
-                  ease: [0.16, 1, 0.3, 1] 
-                }}
-                style={{ transformOrigin: "bottom center" }}
-                className="relative group overflow-hidden cursor-pointer break-inside-avoid border border-rose/5 bg-blush"
-                onClick={() => setLightboxSrc(item.src)}
-              >
-                <div className={`relative overflow-hidden ${
-                  item.aspect === "landscape" ? "aspect-[4/3]" : 
-                  item.aspect === "square" ? "aspect-square" : "aspect-[3/4]"
-                }`}>
-                  <SafeImage
-                    src={item.src}
-                    alt={`${item.cat} photography`}
-                    className="group-hover:scale-110 transition-transform duration-1000"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white">
-                      <Search size={20} />
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4 bg-white border-t border-rose/5" />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+      <section className="max-w-[1600px] mx-auto px-4 md:px-8 py-20 min-h-screen relative z-10">
+        <Masonry 
+          items={filtered.map((item, i) => {
+            // Provide a varied array of heights (these get divided by 2 in Masonry.tsx)
+            // This creates actual DOM heights of roughly 400, 250, 600, 300, 750, 450, etc.
+            const variedHeights = [800, 500, 1200, 600, 1500, 900, 1000, 700, 1600, 850, 1100, 550];
+            return {
+              id: i,
+              img: item.src,
+              height: variedHeights[i % variedHeights.length],
+              cat: item.cat,
+              title: item.location
+            };
+          })}
+          animateFrom="bottom"
+          stagger={0.03}
+          scaleOnHover={true}
+          hoverScale={1.02}
+          onImageClick={setLightboxSrc}
+        />
       </section>
 
       {/* CTA Item */}

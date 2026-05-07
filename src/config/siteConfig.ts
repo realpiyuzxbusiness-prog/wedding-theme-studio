@@ -11,6 +11,7 @@
  */
 
 import { PORTFOLIO_IMAGES } from "./images";
+import { EXTRA_PORTFOLIO_ITEMS } from "./gallery";
 
 export const SITE_CONFIG = {
   // ============ SOCIAL LINKS ============
@@ -39,20 +40,9 @@ export const SITE_CONFIG = {
   },
 
   // ============ PORTFOLIO ITEMS (Studio Images) ============
-  // Images sourced from registry in src/config/images.ts
+  // Images sourced dynamically from src/config/gallery.ts
   portfolioItems: [
-    { src: PORTFOLIO_IMAGES.brideFullPortrait, cat: "Wedding", location: "Portrait", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.brideProfile, cat: "Wedding", location: "Profile", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.brideVeilPurple, cat: "Wedding", location: "Veil", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.brideEyesClosed, cat: "Wedding", location: "Emotions", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.brideNoseRing, cat: "Wedding", location: "Details", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.candid, cat: "Wedding", location: "Candid", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.wedding, cat: "Wedding", location: "Ceremony", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.cinematic, cat: "Wedding", location: "Cinematic", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.preWedding, cat: "Pre-Wedding", location: "Delhi", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.wedding02, cat: "Wedding", location: "Hindu Wedding", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.wedding03, cat: "Wedding", location: "Sikh Wedding", aspect: "portrait" },
-    { src: PORTFOLIO_IMAGES.wedding04, cat: "Destination", location: "Udaipur", aspect: "landscape" },
+    ...EXTRA_PORTFOLIO_ITEMS,
   ],
 
   // ============ FILM THUMBNAILS ============

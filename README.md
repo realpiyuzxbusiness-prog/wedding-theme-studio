@@ -1,73 +1,61 @@
-# Wedding Theme Studio - Client Guide
+# 📸 Golden Frames — Wedding Theme Studio
 
-Welcome to the **Wedding Theme Studio** website project. This document is designed to help you understand how your website works and how you can manage its content easily.
+A premium, editorial-style wedding photography portfolio and booking management system. Built for speed, aesthetics, and seamless client lead capture.
 
-## 🌟 Overview
+![Golden Frames Preview](https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200)
 
-Your website is a premium, high-performance platform built to showcase your wedding photography and cinematography work. It features smooth animations, a professional portfolio gallery, and an integrated booking system to convert visitors into clients.
+## ✨ Features
 
----
+- **Editorial Masonry Gallery**: A fluid, high-performance visual grid for showcasing wedding portfolios.
+- **Dynamic Booking System**: Interactive modal with real-time price estimation for packages and add-ons.
+- **Supabase Backend**: 
+  - Robust lead capture in the `bookings` table.
+  - **Row Level Security (RLS)** enabled to protect client data.
+  - **Edge Functions**: Automated email notifications (via Resend) triggered by database webhooks.
+- **Responsive Design**: Premium dark-mode/glassmorphism aesthetics using Tailwind CSS and Framer Motion.
+- **Instant WhatsApp Integration**: Direct links for immediate client communication.
 
-## 🛠️ How to Manage Your Content
+## 🛠️ Technical Stack
 
-Most of your website's information is centralized in a single file called `siteConfig.ts`. This allows you to update text, links, and images without touching complex code.
+- **Frontend**: React 18, Vite, TypeScript
+- **Styling**: Tailwind CSS, Lucide React, Framer Motion
+- **Backend/DB**: Supabase (PostgreSQL)
+- **Infrastructure**: Vercel (Frontend), Supabase Edge Functions (Notifications)
+- **Email Service**: Resend API
 
-**Location:** `src/config/siteConfig.ts`
+## 🚀 Getting Started
 
-### You can update the following via this file:
-- **Contact Details**: Phone numbers, email, physical address, and working hours.
-- **Social Media**: Links to your Instagram, Facebook, and YouTube profiles.
-- **Branding**: Your studio name, tagline, and founding year.
-- **Portfolio**: The images displayed in your gallery, including their categories (Wedding, Pre-Wedding, etc.).
-- **FAQs & Testimonials**: Client reviews and frequently asked questions on the Pricing page.
+### 1. Clone & Install
+```bash
+git clone https://github.com/realpiyuzxbusiness-prog/wedding-theme-studio.git
+cd wedding-theme-studio
+npm install
+```
 
----
+### 2. Environment Setup
+Create a `.env` file in the root:
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-## 📸 Managing Images
+### 3. Database Setup
+Run the SQL found in `supabase_schema.sql` inside your Supabase SQL Editor to:
+- Create the `bookings` table.
+- Enable RLS and setup policies.
+- Configure permissions for anonymous lead submission.
 
-Your website uses high-quality imagery to tell your story.
+### 4. Edge Functions (Email Notifications)
+Deploy the email function:
+```bash
+supabase functions deploy send-booking-email --project-ref your_project_id
+supabase secrets set RESEND_API_KEY=your_key --project-ref your_project_id
+```
 
-### Adding New Portfolio Photos:
-1. Place your new image files in the `public/studio-images/` folder.
-2. Open `src/config/siteConfig.ts`.
-3. Add a new entry to the `portfolioItems` list following this format:
-   ```javascript
-   { src: "/studio-images/your-image-name.jpg", cat: "Wedding", location: "City Name", aspect: "portrait" }
-   ```
+### 5. Run Locally
+```bash
+npm run dev
+```
 
-### Pro Tip for Images:
-To keep your site fast, please ensure your images are compressed (ideally under 500KB) before uploading.
-
----
-
-## 📩 Handling Client Enquiries
-
-There are two main ways clients can reach you:
-
-1. **Direct WhatsApp**: Floating buttons and "Inquire Now" links will open a direct chat with your WhatsApp number (+91 88024 05067).
-2. **Booking Form**: When a client fills out the "Get a Quotation" or "Contact" form:
-   - Their details are securely stored in your **Supabase Database**.
-   - You will be notified according to your backend configuration.
-
----
-
-## 🚀 Key Features for Your Clients
-
-- **Smooth Experience**: We use "Lenis" smooth scrolling for a premium feel.
-- **Mobile Optimized**: The site looks beautiful on iPhones, Androids, and tablets.
-- **Portfolio Filters**: Clients can easily filter by "Wedding", "Pre-Wedding", or "Destination" to find exactly what they are looking for.
-- **Interactive Lightbox**: Clicking any photo opens it in full-screen for detailed viewing.
-- **Fast Loading**: We use advanced techniques like "lazy loading" to ensure the site stays fast even with many high-res photos.
-
----
-
-## 📞 Support & Maintenance
-
-If you need assistance with technical updates or adding new features:
-
-- **Owner Email**: `opomprakash011@gmail.com`
-- **Developer Documentation**: For deep technical details, refer to the [PRD_TEMPLATE.md](file:///c:\Users\user\wedding thee studio\golden-frames\PRD_TEMPLATE.md) file in the root directory.
-
----
-
-*Handcrafted with ❤️ for Wedding Theme Studio*
+## 📄 License
+© 2024 Golden Frames Wedding Studio. All Rights Reserved.

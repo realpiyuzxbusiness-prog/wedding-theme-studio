@@ -21,10 +21,8 @@ import {
 import { useState, useEffect } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-const U = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1200&q=75`;
 const IMGS = {
-  // Mapped from registry in src/config/images.ts for fast CDN loading and easy central management
-  destination: PORTFOLIO_IMAGES.brideFullPortrait,
+  destination: PORTFOLIO_IMAGES.preWedding,
   preWedding:  PORTFOLIO_IMAGES.preWedding,
   candid:      PORTFOLIO_IMAGES.candid,
   wedding:     PORTFOLIO_IMAGES.wedding,
@@ -183,63 +181,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Portfolio Carousel Section */}
-      <section className="py-20 bg-white relative z-10">
-        <div className="max-w-site mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="text-sukuna font-heading italic text-xl mb-2 block">Portfolio Showcase</span>
-            <h2 className="text-3xl lg:text-4xl uppercase font-heading font-light">Breathtaking <span className="text-sukuna italic">Moments</span></h2>
-          </div>
-
-          <Carousel
-            setApi={setApi}
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 4000,
-              }),
-            ]}
-            className="w-full relative"
-          >
-            <CarouselContent>
-              {carouselImages.map((src, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
-                  <div className="aspect-[4/5] overflow-hidden group shadow-lg">
-                    <SafeImage
-                      src={src}
-                      alt={`Portfolio item ${index + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="hidden lg:block">
-              <CarouselPrevious className="-left-12 border-sukuna text-sukuna hover:bg-sukuna hover:text-white" />
-              <CarouselNext className="-right-12 border-sukuna text-sukuna hover:bg-sukuna hover:text-white" />
-            </div>
-            
-            {/* Dots / Thumbnail Indicators */}
-            <div className="flex justify-center gap-2 mt-8">
-              {carouselImages.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => api?.scrollTo(i)}
-                  className={cn(
-                    "w-2 h-2 rounded-full transition-all duration-300",
-                    current === i ? "bg-sukuna w-8" : "bg-sukuna/20"
-                  )}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-          </Carousel>
-        </div>
-      </section>
-
       {/* Services List */}
       <section className="py-24 lg:py-40 relative z-10">
         <div className="max-w-site mx-auto px-6 space-y-32 lg:space-y-60">
@@ -253,7 +194,7 @@ const Services = () => {
                   <SafeImage 
                     src={s.img} 
                     alt={s.title} 
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                    className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110" 
                   />
                 </div>
                 <motion.div 
@@ -272,26 +213,6 @@ const Services = () => {
                 </h3>
                 <TextReveal text={s.desc} className="text-body text-base leading-relaxed mb-10 font-light block" />
                 
-                {/* Pricing Tiers */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                  {s.tiers.map((tier) => (
-                    <div key={tier.name} className="p-4 bg-blush/50 border border-sukuna/10 rounded-lg">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Zap size={14} className="text-sukuna" />
-                        <span className="text-[10px] font-bold uppercase tracking-widest">{tier.name}</span>
-                      </div>
-                      <div className="text-sm font-heading text-charcoal mb-3">{tier.price}</div>
-                      <ul className="space-y-1.5">
-                        {tier.features.map((f) => (
-                          <li key={f} className="flex items-center gap-2 text-[11px] text-muted-foreground">
-                            <CheckCircle size={10} className="text-sukuna/40" />
-                            {f}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
 
                 <div className="flex flex-col gap-6">
                   <Link to="/contact">

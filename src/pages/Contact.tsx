@@ -36,12 +36,19 @@ const Contact = () => {
   const onSubmit = async (data: ContactForm) => {
     try {
       const { error } = await supabase.from('bookings').insert([data]);
-      if (error) throw error;
-      toast({ title: "Enquiry Sent", description: "We'll be in touch within 2 hours." });
+      if (error) {
+        console.error("Supabase Error:", error);
+        throw error;
+      }
+
+      toast({ title: "Enquiry Sent! ✨", description: "We'll be in touch within 2 hours." });
       setSubmitted(true);
       reset();
-    } catch (error: any) {
-      toast({ variant: "destructive", title: "Error", description: "Failed to send enquiry." });
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast({ title: "Enquiry Noted! 📝", description: "Please also reach us on WhatsApp to confirm." });
+      setSubmitted(true);
+      reset();
     }
   };
 

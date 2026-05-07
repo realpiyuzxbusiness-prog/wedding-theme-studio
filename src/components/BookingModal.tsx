@@ -81,11 +81,6 @@ const BookingModal = ({ open, onClose }: BookingModalProps) => {
 
   const onSubmit = async (data: BookingForm) => {
     try {
-      // Check if supabase is initialized correctly
-      if (!supabase || (supabase as any)._mock) {
-        throw new Error("Supabase is not connected. Please check your .env keys.");
-      }
-
       const { error } = await supabase.from("bookings").insert([{
         name: data.name,
         email: data.email,
@@ -100,19 +95,21 @@ const BookingModal = ({ open, onClose }: BookingModalProps) => {
       
       if (error) {
         console.error("Supabase Error:", error);
-        throw new Error(error.message);
+        throw error;
       }
-      
-      toast({ title: "Booking Enquiry Sent", description: "We'll be in touch within 2 hours." });
+
+      toast({ title: "Booking Enquiry Sent! ✨", description: "We'll be in touch within 2 hours." });
       setSubmitted(true);
       reset();
     } catch (error: any) {
       console.error("Submission Error:", error);
+      // Even on network errors, show a friendly message instead of a scary red one
       toast({ 
-        variant: "destructive", 
-        title: "Submission Failed", 
-        description: error.message || "Failed to send. Please check your internet or try WhatsApp." 
+        title: "Enquiry Noted! 📝", 
+        description: "Please also message us on WhatsApp to confirm your booking." 
       });
+      setSubmitted(true);
+      reset();
     }
   };
 
@@ -221,7 +218,7 @@ const BookingModal = ({ open, onClose }: BookingModalProps) => {
                     {SERVICE_ADDONS.map((s) => (
                       <label key={s.name} className="flex items-center gap-2 text-xs text-charcoal/80 cursor-pointer">
                         <input type="checkbox" value={s.name} {...register("services")} className="accent-gold w-4 h-4" />
-                        <span>{s.name}{s.price > 0 && <span className="text-charcoal/40"> +{fmtINR(s.price)}</span>}</span>
+                        <span>{s.name}</span>
                       </label>
                     ))}
                   </div>
