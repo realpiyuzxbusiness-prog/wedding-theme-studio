@@ -10,9 +10,9 @@ import { cn } from "@/lib/utils";
 const WHATSAPP_LINK = "https://api.whatsapp.com/send/?phone=918802405067&text=Hi%2C+I%27m+interested+in+your+wedding+photography+services.+Can+we+discuss%3F";
 
 const PACKAGES = [
-  { name: "Essential", label: "Essential" },
-  { name: "Signature", label: "Signature" },
-  { name: "Luxury", label: "Luxury" },
+  { name: "Essential", label: "Essential — ₹40,000" },
+  { name: "Signature", label: "Signature — ₹80,000" },
+  { name: "Luxury", label: "Luxury — ₹1,30,000" },
   { name: "Custom", label: "Custom (Get a Quote)" },
 ];
 
