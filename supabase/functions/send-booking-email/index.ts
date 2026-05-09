@@ -25,7 +25,7 @@ const STUDIO_ADDRESS   = "RZ-64/284, Geetanjali Park, West Sagarpur, New Delhi �
  * Once you verify your domain in Resend, change 'onboarding@resend.dev' 
  * to something like 'bookings@weddingthemestudio.com'
  */
-const EMAIL_FROM = "Wedding Theme Studio <onboarding@resend.dev>"
+const EMAIL_FROM = "Wedding Theme Studio <bookings@weddingthemestudio.com>"
 
 // ── 2. HELPERS ───────────────────────────────────────────────────────────────
 

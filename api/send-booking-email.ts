@@ -44,7 +44,7 @@ function customerEmailHtml(data: BookingPayload): string {
     <!-- Header -->
     <tr>
       <td style="background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);padding:40px 30px;text-align:center;">
-        <h1 style="color:#c9a96e;font-size:24px;margin:0;letter-spacing:3px;font-weight:300;">GOLDEN FRAMES</h1>
+        <h1 style="color:#c9a96e;font-size:24px;margin:0;letter-spacing:3px;font-weight:300;">WEDDING THEME STUDIO</h1>
         <p style="color:#ffffff80;font-size:11px;letter-spacing:4px;margin:8px 0 0;text-transform:uppercase;">Wedding Photography</p>
       </td>
     </tr>
@@ -88,7 +88,7 @@ function customerEmailHtml(data: BookingPayload): string {
     <!-- Footer -->
     <tr>
       <td style="background:#1a1a1a;padding:20px 30px;text-align:center;">
-        <p style="color:#ffffff50;font-size:11px;margin:0;">© ${new Date().getFullYear()} Golden Frames · Wedding Photography · All Rights Reserved</p>
+        <p style="color:#ffffff50;font-size:11px;margin:0;">© ${new Date().getFullYear()} Wedding Theme Studio · Wedding Photography · All Rights Reserved</p>
       </td>
     </tr>
   </table>
@@ -124,7 +124,7 @@ function ownerEmailHtml(data: BookingPayload): string {
           ${data.message ? `<tr><td style="padding:8px 0;color:#999;vertical-align:top;">Message</td><td style="padding:8px 0;font-style:italic;">"${data.message}"</td></tr>` : ''}
         </table>
         <div style="margin-top:24px;text-align:center;">
-          <a href="https://api.whatsapp.com/send/?phone=91${data.phone}&text=Hi%20${encodeURIComponent(data.name)}%2C%20thank%20you%20for%20your%20booking%20enquiry%20with%20Golden%20Frames!%20Let%27s%20discuss%20the%20details." 
+          <a href="https://api.whatsapp.com/send/?phone=91${data.phone}&text=Hi%20${encodeURIComponent(data.name)}%2C%20thank%20you%20for%20your%20booking%20enquiry%20with%20Wedding%20Theme%20Studio!%20Let%27s%20discuss%20the%20details." 
              style="display:inline-block;background:#25D366;color:#fff;padding:12px 28px;text-decoration:none;border-radius:4px;font-size:13px;font-weight:600;">
             💬 WhatsApp ${data.name}
           </a>
@@ -142,7 +142,7 @@ async function sendEmail(
   to: string,
   subject: string,
   html: string,
-  from: string = 'Golden Frames <onboarding@resend.dev>'
+  from: string = 'Wedding Theme Studio <bookings@weddingthemestudio.com>'
 ) {
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -197,7 +197,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       sendEmail(
         apiKey,
         data.email,
-        `Booking Confirmed ✨ — Golden Frames Wedding Photography`,
+        `Booking Confirmed ✨ — Wedding Theme Studio`,
         customerEmailHtml(data)
       ),
       // 2. Lead notification to owner
