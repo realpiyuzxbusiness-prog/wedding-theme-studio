@@ -347,7 +347,7 @@ const Index = () => {
            >
             GET A <motion.span initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }} className="text-[#C94070] italic">FREE QUOTE!</motion.span>
            </motion.h2>
-           <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 0.6 }} transition={{ delay: 1 }} className="text-white/60 mb-16 uppercase tracking-[0.4em] text-xs">Available for 2024 & 2025 Weddings Worldwide</motion.p>
+
            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
               <Link to="/contact" className="btn-rose bg-[#C94070]">Inquire Now</Link>
            </div>
