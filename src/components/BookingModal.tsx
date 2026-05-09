@@ -10,22 +10,22 @@ import { cn } from "@/lib/utils";
 const WHATSAPP_LINK = "https://api.whatsapp.com/send/?phone=918802405067&text=Hi%2C+I%27m+interested+in+your+wedding+photography+services.+Can+we+discuss%3F";
 
 const PACKAGES = [
-  { name: "Essential", price: 40000, label: "Essential — ₹40,000" },
-  { name: "Signature", price: 80000, label: "Signature — ₹80,000" },
-  { name: "Luxury", price: 130000, label: "Luxury — ₹1,30,000" },
-  { name: "Custom", price: 0, label: "Custom (We'll quote)" },
+  { name: "Essential", label: "Essential" },
+  { name: "Signature", label: "Signature" },
+  { name: "Luxury", label: "Luxury" },
+  { name: "Custom", label: "Custom (Get a Quote)" },
 ];
 
-const SERVICE_ADDONS: { name: string; price: number }[] = [
-  { name: "Photography", price: 0 },
-  { name: "Cinematography", price: 25000 },
-  { name: "Pre-Wedding Shoot", price: 15000 },
-  { name: "Drone Coverage", price: 8000 },
-  { name: "Luxury Album", price: 12000 },
-  { name: "Marital Shoot", price: 10000 },
-  { name: "Model Shoot", price: 12000 },
-  { name: "Maternity Shoot", price: 9000 },
-  { name: "Corporate Event", price: 15000 },
+const SERVICE_ADDONS = [
+  "Photography",
+  "Cinematography",
+  "Pre-Wedding Shoot",
+  "Drone Coverage",
+  "Luxury Album",
+  "Marital Shoot",
+  "Model Shoot",
+  "Maternity Shoot",
+  "Corporate Event",
 ];
 
 
@@ -40,8 +40,6 @@ const INDIA_STATES = [
   "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
 ];
 
-const fmtINR = (n: number) =>
-  new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(n);
 
 const bookingSchema = z.object({
   name: z.string().trim().min(2, "Name is required").max(100),
@@ -73,11 +71,6 @@ const BookingModal = ({ open, onClose }: BookingModalProps) => {
 
   const selectedPkg = watch("packageName");
   const selectedServices = watch("services") || [];
-  const basePrice = PACKAGES.find(p => p.name === selectedPkg)?.price ?? 0;
-  const addonsTotal = SERVICE_ADDONS
-    .filter(a => selectedServices.includes(a.name))
-    .reduce((sum, a) => sum + a.price, 0);
-  const total = basePrice + addonsTotal;
 
   const onSubmit = async (data: BookingForm) => {
     try {
@@ -89,8 +82,7 @@ const BookingModal = ({ open, onClose }: BookingModalProps) => {
         venue_city: data.venueCity,
         package_name: data.packageName,
         services: data.services,
-        message: data.message,
-        estimated_total: total
+        message: data.message
       }]);
       
       if (error) {
@@ -216,18 +208,14 @@ const BookingModal = ({ open, onClose }: BookingModalProps) => {
                   <label className={labelCls}>Services / Add-ons</label>
                   <div className="grid grid-cols-2 gap-2 mt-1">
                     {SERVICE_ADDONS.map((s) => (
-                      <label key={s.name} className="flex items-center gap-2 text-xs text-charcoal/80 cursor-pointer">
-                        <input type="checkbox" value={s.name} {...register("services")} className="accent-gold w-4 h-4" />
-                        <span>{s.name}</span>
+                      <label key={s} className="flex items-center gap-2 text-xs text-charcoal/80 cursor-pointer">
+                        <input type="checkbox" value={s} {...register("services")} className="accent-gold w-4 h-4" />
+                        <span>{s}</span>
                       </label>
                     ))}
                   </div>
                 </div>
 
-                <div className="bg-blush/40 border border-gold/30 px-4 py-3 flex justify-between items-center">
-                  <span className="text-[11px] uppercase tracking-[0.15em] text-charcoal/60 font-bold">Estimated Total</span>
-                  <span className="font-heading text-xl text-charcoal">{total > 0 ? fmtINR(total) : "Custom Quote"}</span>
-                </div>
 
                 <div>
                   <label className={labelCls}>Message (Optional)</label>

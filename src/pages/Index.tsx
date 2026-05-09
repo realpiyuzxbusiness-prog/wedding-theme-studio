@@ -271,6 +271,71 @@ const Index = () => {
       {/* Marquee Strip 2 */}
       <MarqueeStrip text="WEDDING PHOTOGRAPHY ✦ PRE-WEDDING SHOOTS ✦ CINEMATIC FILMS ✦ DRONE COVERAGE ✦ LUXURY ALBUMS ✦ DESTINATION WEDDINGS ✦ CANDID MOMENTS ✦ 4K VIDEOGRAPHY" />
 
+      {/* FAQ / AEO Section - Answers to common searches */}
+      <section className="py-24 lg:py-40 bg-[#FAF8F5]">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <span className="section-tag mx-auto">Common Questions</span>
+            <h2 className="text-4xl lg:text-5xl uppercase font-heading">
+              EVERYTHING YOU <br /><motion.span className="text-[#C94070] italic">WANT TO KNOW</motion.span>
+            </h2>
+          </div>
+          
+          <div className="space-y-8">
+            {[
+              { 
+                q: "Looking for the best photographer near me in Delhi NCR?", 
+                a: "Wedding Theme Studio is a top-rated photography studio based in Delhi NCR. We provide premium candid photography, cinematic wedding films, and professional event coverage across New Delhi, Noida, Gurgaon, and Faridabad." 
+              },
+              { 
+                q: "What makes your wedding photography services unique?", 
+                a: "We blend editorial style with raw documentary storytelling. Led by Om Prakash, our team focuses on capturing unscripted emotions and artistic frames that tell a timeless story of your legacy." 
+              },
+              { 
+                q: "Do you travel for destination weddings?", 
+                a: "Yes! While we are the preferred choice for couples searching for a 'photographer near me' in Delhi, we travel globally for destination weddings, especially across Rajasthan, Uttarakhand, and Himachal Pradesh." 
+              },
+              { 
+                q: "How soon can we expect our wedding photos and films?", 
+                a: "We prioritize quality and speed. You'll receive a teaser set within 48 hours, and the complete high-resolution edited gallery and cinematic films are typically delivered within 4 to 6 weeks." 
+              }
+            ].map((faq, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white p-8 rounded-lg shadow-sm border border-black/5"
+              >
+                <h4 className="text-lg font-bold mb-3 text-charcoal flex items-center gap-3">
+                  <span className="w-6 h-6 bg-[#C94070] text-white rounded-full flex items-center justify-center text-[10px]">Q</span>
+                  {faq.q}
+                </h4>
+                <p className="text-muted-foreground text-sm font-light leading-relaxed pl-9">
+                  {faq.a}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Service Areas - SEO Boost */}
+      <section className="py-16 bg-white border-y border-black/5">
+        <div className="max-w-site mx-auto px-6 text-center">
+          <p className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-8">Serving premium clients across</p>
+          <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 text-charcoal/40 font-heading text-xl uppercase italic">
+            <span>New Delhi</span>
+            <span>Noida</span>
+            <span>Gurgaon</span>
+            <span>Faridabad</span>
+            <span>Ghaziabad</span>
+            <span>Jaipur</span>
+            <span>Udaipur</span>
+          </div>
+        </div>
+      </section>
+
       {/* Global CTA - GET A FREE QUOTE */}
       <section className="py-24 lg:py-40 bg-charcoal text-white text-center relative overflow-hidden">
         <div className="max-w-Site mx-auto px-6 relative z-10">
