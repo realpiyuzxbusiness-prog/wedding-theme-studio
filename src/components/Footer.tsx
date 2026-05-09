@@ -9,11 +9,8 @@ const Footer = () => (
     
     <div className="max-w-site mx-auto px-6">
       <div className="flex flex-col md:flex-row justify-between items-center pb-20 border-b border-rose/10 mb-20 gap-8">
-        <Link to="/" className="flex items-center gap-3">
-          <img src="/logo.png" alt="Wedding Theme Studio" className="h-16 w-auto object-contain" />
-          <span className="logo-font text-3xl text-charcoal hover:text-rose transition-colors hidden sm:inline-block">
-            Wedding <span className="text-rose">Theme</span> Studio
-          </span>
+        <Link to="/" className="logo-font text-3xl text-charcoal hover:text-rose transition-colors">
+          Wedding <span className="text-rose">Theme</span> Studio
         </Link>
         <div className="flex gap-4">
            {[

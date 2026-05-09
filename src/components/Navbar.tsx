@@ -62,11 +62,8 @@ const Navbar = () => {
           scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-4" : "bg-white"
         )}
       >
-        <Link to="/" className="flex items-center gap-3">
-          <img src="/logo.png" alt="Wedding Theme Studio" className="h-12 w-auto object-contain" />
-          <span className="logo-font text-charcoal hidden sm:inline-block">
-            Wedding <span className="text-rose">Theme</span> Studio
-          </span>
+        <Link to="/" className="logo-font text-charcoal">
+          Wedding <span className="text-rose">Theme</span> Studio
         </Link>
 
         {/* Desktop nav */}
