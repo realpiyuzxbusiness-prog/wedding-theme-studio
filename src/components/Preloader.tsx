@@ -36,12 +36,9 @@ const Preloader = () => {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex flex-col items-center gap-4"
+              className="text-charcoal text-3xl md:text-5xl font-heading font-bold uppercase tracking-[0.15em] text-center"
             >
-              <img src="/logo.png" alt="Wedding Theme Studio" className="h-24 w-auto object-contain" />
-              <div className="text-charcoal text-xl md:text-2xl font-heading font-bold uppercase tracking-[0.15em]">
-                Wedding <span className="text-rose">Theme</span> Studio
-              </div>
+              Wedding <span className="text-rose">Theme</span> Studio
             </motion.div>
           </div>
           <motion.div 
